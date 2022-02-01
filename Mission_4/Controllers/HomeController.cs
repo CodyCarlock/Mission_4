@@ -11,13 +11,11 @@ namespace Mission4.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private MoviesContext _blahContext { get; set; }
+        private MoviesContext daContext { get; set; }
         //constructor
-        public HomeController(ILogger<HomeController> logger, MoviesContext someName)
+        public HomeController(MoviesContext someName)
         {
-            _logger = logger;
-            _blahContext = someName;
+            daContext = someName;
         }
 
         public IActionResult Index()
@@ -39,16 +37,19 @@ namespace Mission4.Controllers
         [HttpPost]
         public IActionResult addMovie(applicationResponse ar)
         {
-            _blahContext.Add(ar);
-            _blahContext.SaveChanges();
+            daContext.Add(ar);
+            daContext.SaveChanges();
 
             return View("confermation", ar);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpGet]
+        public IActionResult movieTable()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var applications = daContext.Responses.ToList();
+            return View(applications);
+            
         }
+
     }
 }
