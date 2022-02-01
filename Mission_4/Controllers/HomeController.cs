@@ -46,7 +46,9 @@ namespace Mission4.Controllers
         [HttpGet]
         public IActionResult movieTable()
         {
-            var applications = daContext.Responses.ToList();
+            var applications = daContext.Responses
+                .OrderBy(x => x.Category)
+                .ToList();
             return View(applications);
             
         }
