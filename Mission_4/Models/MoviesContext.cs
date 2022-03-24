@@ -23,8 +23,8 @@ namespace Mission4.Models
         {
 
             mb.Entity<Categories>().HasData(
-                    new Categories { CategoryId=1, CategoryName= "Action/Adventure" },
-                    new Categories { CategoryId=2, CategoryName= "Comedy" },
+                    new Categories { CategoryId = 1, CategoryName = "Action/Adventure" },
+                    new Categories { CategoryId = 2, CategoryName = "Comedy" },
                     new Categories { CategoryId = 3, CategoryName = "Drama" },
                     new Categories { CategoryId = 4, CategoryName = "Family" },
                     new Categories { CategoryId = 5, CategoryName = "Horror/Suspense" },
@@ -38,9 +38,9 @@ namespace Mission4.Models
             mb.Entity<applicationResponse>().HasData(
 
                 new applicationResponse
-                { 
+                {
                     MovieId = 1,
-                    CategoryId= 1,
+                    CategoryId = 1,
                     Name = "Forest Gump",
                     Year = 1994,
                     Director = "Robert Zemeckis",

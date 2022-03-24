@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,10 @@ namespace Mission4
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //services.AddTransient<MySqlConnection>(_ => new MySqlConnection(Configuration["ConnectionStrings:BlahConnection"]));
             services.AddDbContext<Models.MoviesContext>(options =>
             {
-                options.UseSqlite(Configuration["ConnectionStrings:BlahConnection"]);
+                options.UseMySql(Configuration["ConnectionStrings:BlahConnection"]);
 
             });
         }
