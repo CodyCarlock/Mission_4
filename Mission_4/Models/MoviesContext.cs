@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Mission_4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,31 @@ namespace Mission4.Models
         }
 
         public DbSet<applicationResponse> Responses { get; set; }
+        public DbSet<Categories> Categories { get; set; }
 
         //seeding database with three movies
         protected override void OnModelCreating(ModelBuilder mb)
         {
+
+            mb.Entity<Categories>().HasData(
+                    new Categories { CategoryId = 1, CategoryName = "Action/Adventure" },
+                    new Categories { CategoryId = 2, CategoryName = "Comedy" },
+                    new Categories { CategoryId = 3, CategoryName = "Drama" },
+                    new Categories { CategoryId = 4, CategoryName = "Family" },
+                    new Categories { CategoryId = 5, CategoryName = "Horror/Suspense" },
+                    new Categories { CategoryId = 6, CategoryName = "Miscellaneous" },
+                    new Categories { CategoryId = 7, CategoryName = "Romance" },
+                    new Categories { CategoryId = 8, CategoryName = "Television" },
+                    new Categories { CategoryId = 9, CategoryName = "VHS" }
+                );
+
+
             mb.Entity<applicationResponse>().HasData(
 
                 new applicationResponse
-                { 
+                {
                     MovieId = 1,
-                    Category = "Action/Adventure",
+                    CategoryId = 1,
                     Name = "Forest Gump",
                     Year = 1994,
                     Director = "Robert Zemeckis",
@@ -36,7 +52,7 @@ namespace Mission4.Models
                 new applicationResponse
                 {
                     MovieId = 2,
-                    Category = "Action/Adventure",
+                    CategoryId = 1,
                     Name = "Pulp Fiction",
                     Year = 1994,
                     Director = "Quentin Tarantino",
@@ -47,7 +63,7 @@ namespace Mission4.Models
                 new applicationResponse
                 {
                     MovieId = 3,
-                    Category = "Family",
+                    CategoryId = 4,
                     Name = "Togo",
                     Year = 2019,
                     Director = "Ericson Core",
@@ -57,5 +73,6 @@ namespace Mission4.Models
                 }
              );
         }
+
     }
 }
